@@ -114,9 +114,13 @@ export default class Login extends Component < Props > {
                             fontSize: 30
                         }}>Login</Text>
                         <TextInput 
+                        keyboardType='email-address'
                         onChangeText={(email)=>this.setState({email})}
                         style={styles.myInput} placeholder='Email'></TextInput>
-                        <TextInput style={styles.myInput}
+                        <TextInput
+                        textContentType='password'
+                        secureTextEntry={true}
+                         style={styles.myInput}
                         onChangeText={(password)=>this.setState({password})}
                          placeholder='Password'></TextInput>
                         <Text
