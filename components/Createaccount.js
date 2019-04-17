@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import firebase from 'firebase'
-import { Container, Header, Content, Icon } from 'native-base';
+import { Container, Header, Content, Icon,Toast } from 'native-base';
 
 
 type Props = {};
@@ -41,12 +41,27 @@ export default class Createaccount extends Component < Props > {
     createAccountFn = () => {
 
         if (this.state.email == '' && this.state.password == '' && this.state.password2 == '' && this.state.phone == '') {
-            this.setState({message: 'Fields cannot be empty'})
+           // this.setState({message: 'Fields cannot be empty'})
             // this.setState({activityVisible: false})
+
+
+            Toast.show({
+                text: "Please fill in all fields",
+                buttonText: "Okay",
+                duration: 3500,
+                type:'danger'
+              })
 
             return 0;
         } else if (this.state.password !== this.state.password2) {
             this.setState({message: 'Passwords do not match'})
+
+            Toast.show({
+                text: "Passwords do not match",
+                buttonText: "Okay",
+                duration: 3500,
+                type:'danger'
+              })
             //this.setState({activityVisible: false})
 
             return 0;
@@ -62,9 +77,22 @@ export default class Createaccount extends Component < Props > {
                 this.saveKey()
                 this.directToMainPage()
 
+                Toast.show({
+                    text:"Logging you in...",
+                    
+                    duration: 2500,
+                    type:'success'
+                  })
+
             })
             .catch((error) => {
                 this.setState({message: error.message})
+                Toast.show({
+                    text:this.state.message,
+                    buttonText: "Okay",
+                    duration: 5500,
+                    type:'danger'
+                  })
             })
 
     }

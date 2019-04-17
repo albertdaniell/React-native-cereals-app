@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {AsyncStorage} from 'react-native';
-import {Container, Header, Content, Icon} from 'native-base';
+import {Container, Header, Content, Icon,Button, Toast} from 'native-base';
 
 // firebase
 import firebase from 'firebase'
@@ -46,7 +46,7 @@ export default class Login extends Component < Props > {
         this.state = {
             email: '',
             password: '',
-            message: '',
+            message: null,
             isLoading: false
         }
     }
@@ -56,13 +56,24 @@ export default class Login extends Component < Props > {
     }
 
     loginFunc = () => {
-
+        this.setState({message: ''})
         this.setState({isLoading: true})
 
         // check if fields are empty
 
         if (this.state.email == '' || this.state.password == '') {
             this.setState({message: 'Please fill in all fields.'})
+            var message=this.state.message
+
+            Toast.show({
+                text: "Please fill in all fields",
+                buttonText: "Okay",
+                duration: 3500,
+                type:'danger'
+              })
+
+
+            
             this.setState({isLoading: false})
 
             return 0;
@@ -76,6 +87,12 @@ export default class Login extends Component < Props > {
             .then(() => {
 
                 //Store a key
+                Toast.show({
+                    text:"Logging you in...",
+                    
+                    duration: 2500,
+                    type:'success'
+                  })
 
                 AsyncStorage
                     .setItem('loginkey', 'Logged in')
@@ -87,6 +104,13 @@ export default class Login extends Component < Props > {
             .catch(error => {
                 this.setState({isLoading: false})
                 this.setState({message: error.message})
+                Toast.show({
+                    text: this.state.message,
+                    buttonText: "Okay",
+                    duration: 4500,
+                    type:'danger'
+                  })
+    
             })
 
     }
@@ -125,12 +149,7 @@ export default class Login extends Component < Props > {
                             style={styles.myInput}
                             onChangeText={(password) => this.setState({password})}
                             placeholder='Password'></TextInput>
-                        <Text
-                            style={{
-                            padding: 0,
-                            color: 'brown',
-                            marginTop: 10
-                        }}>{this.state.message}</Text>
+                     
 
                         {this.state.isLoading
                             ? <TouchableOpacity style={styles.myTouch}>

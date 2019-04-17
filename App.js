@@ -20,6 +20,7 @@ import Mainpage from './components/Main'
 import Explore from './components/Tabs/Explore'
 import Profile from './components/Tabs/Profile'
 import ContRepo from './components/Contact'
+import { Root } from "native-base";
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu',
@@ -94,7 +95,9 @@ type Props = {};
 export default class App extends Component < Props > {
     render() {
         return (
-            <AppContainer></AppContainer>
+          <Root>
+          <AppContainer></AppContainer>
+          </Root>
         );
     }
 }

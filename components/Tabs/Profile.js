@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {List, ListItem, Container, Header, Content} from 'native-base'
+import {List, ListItem, Container, Header, Content,Toast} from 'native-base'
 import {
     Platform,
     StyleSheet,
@@ -89,17 +89,25 @@ export default class Explore extends Component < Props > {
     }
 
     clearKey = () => {
+        Toast.show({
+            text:"Logging you out",
+            
+            duration: 1500,
+            type:'warning'
+              })
+setTimeout(()=>{
 
-        AsyncStorage
-            .removeItem('loginkey')
-            .then(() => {
-                this.signOut()
-                this.directToStartedPage()
-            })
-            .catch((error) => {
+    AsyncStorage
+    .removeItem('loginkey')
+    .then(() => {
+        this.signOut()
+        this.directToStartedPage()
+    })
+    .catch((error) => {
 
-                alert(error)
-            })
+        alert(error)
+    })
+},1000)
 
     }
 
