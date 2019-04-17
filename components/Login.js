@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {AsyncStorage} from 'react-native';
+import {Container, Header, Content, Icon} from 'native-base';
 
 // firebase
 import firebase from 'firebase'
@@ -96,7 +97,13 @@ export default class Login extends Component < Props > {
                 height: '100%'
             }}
                 source={require('../assets/Images/Loginbg-01.jpg')}>
+                <View style={styles.header}>
 
+                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                        <Icon type='FontAwesome' name='arrow-left' style={styles.headericon}/>
+
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.container}>
                     <View style={styles.logincont}>
                         <Text
@@ -189,5 +196,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginTop: 20
 
+    },
+    header: {
+        marginTop: -15
+    },
+
+    headericon: {
+        color: 'white',
+        padding: 20
     }
 });

@@ -18,6 +18,8 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import firebase from 'firebase'
+import { Container, Header, Content, Icon } from 'native-base';
+
 
 type Props = {};
 export default class Createaccount extends Component < Props > {
@@ -104,7 +106,15 @@ export default class Createaccount extends Component < Props > {
                 height: '100%'
             }}
                 source={require('../assets/Images/Loginbg-01.jpg')}>
+                <View style={styles.header}>
 
+<TouchableOpacity
+onPress={()=>this.props.navigation.goBack()}
+>
+<Icon type='FontAwesome' name='arrow-left'  style={styles.headericon}/>
+
+</TouchableOpacity>
+</View>
                 <View style={styles.container}>
                     <View style={styles.logincont}>
                         <Text
@@ -207,5 +217,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
         color: 'white'
 
+    },
+    header:{
+        marginTop:-15
+
+    },
+
+    headericon:{
+color:'white',
+padding:20
     }
 });
