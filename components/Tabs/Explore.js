@@ -14,69 +14,70 @@ import {
     View,
     TouchableOpacity,
     ImageBackground,
-    Image
+    Image,
+    
 } from 'react-native';
+import { Container, Header, Item, Input, Icon, Button,Tab, Tabs,TabHeading } from 'native-base';
+
 import {AsyncStorage} from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import {NavigationActions} from 'react-navigation';
 import firebase from 'firebase'
+import { TextInput } from 'react-native-gesture-handler';
 
 type Props = {};
 export default class Explore extends Component < Props > {
 
-    componentWillMount(){
+    componentWillMount() {
         this.getUserData()
     }
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            email:'',
-            username:'',
-
+        this.state = {
+            email: '',
+            username: ''
         }
     }
 
-    directToStartedPage=()=>{
+    directToStartedPage = () => {
         // alert(0)
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Getstarted' })])
+        this
+            .props
+            .navigation
+            .reset([NavigationActions.navigate({routeName: 'Getstarted'})])
 
-      }
+    }
 
-      getUserData=()=>{
-          this.setState({
-              email:'nothing here'
-          })
-          
-       var user = firebase
+    getUserData = () => {
+        this.setState({email: 'nothing here'})
+
+        var user = firebase
             .auth()
             .currentUser;
 
         if (user) {
-           // alert(1)
+            // alert(1)
 
-            this.setState({
-                email:user.email,
-                username:user.displayName
-            })
+            this.setState({email: user.email, username: user.displayName})
 
             //alert(user.displayName)
-            
+
         } else {
-            alert(0)
-            
-            // this.reset()
+            // alert(0) this.reset()
         }
-      }
+    }
 
-
-      signOut=()=>{
-        firebase.auth().signOut().then(function() {
-           // alert("nice")
-            // Sign-out successful.
-          }).catch(function(error) {
-            alert("null")
-          });
-      }
+    signOut = () => {
+        firebase
+            .auth()
+            .signOut()
+            .then(function () {
+                // alert("nice") Sign-out successful.
+            })
+            .catch(function (error) {
+                alert("null")
+            });
+    }
 
     checkUserSignIn = () => {
         var user = firebase
@@ -90,34 +91,50 @@ export default class Explore extends Component < Props > {
         }
     }
 
-    
+    clearKey = () => {
 
-    clearKey=()=>{
-       
-        AsyncStorage.removeItem('loginkey')
-        .then(()=>{
-            this.signOut()
-        this.directToStartedPage()
-        }).catch((error)=>{
+        AsyncStorage
+            .removeItem('loginkey')
+            .then(() => {
+                this.signOut()
+                this.directToStartedPage()
+            })
+            .catch((error) => {
 
-           alert(error)
-        })
-    
-}
+                alert(error)
+            })
 
+    }
 
     render() {
         return (
-            <View>
+            
+      <Container>
+      
+      <View style={{margin:10,height:'100%'}}>
+      <Tabs>
+          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
+          <Text style={styles.PageHead}>Explore</Text>
 
-                <Text>This is the Explore page, Welcome {this.state.email}</Text>
+<Item style={styles.searchDiv}>
+<Icon style={{marginLeft:10}} name="ios-search" />
+<Input placeholder="Search" style={styles.searchInput}/>
 
-                <TouchableOpacity
-                
-                onPress={this.clearKey}>
-                    <Text>Logout</Text>
-                </TouchableOpacity>
-            </View>
+</Item>
+          </Tab>
+          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
+          <Text>haha</Text>
+          </Tab>
+          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
+          <Text>haha</Text>
+          </Tab>
+        </Tabs>
+      </View>
+      
+      </Container>
+         
+
+
         );
     }
 }
@@ -128,6 +145,29 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%'
+    },
+
+    searchInput:{
+       
+       
+    },
+
+
+    searchDiv:{
+        padding:2,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius:10,
+        backgroundColor:'#ccc',
+        marginLeft:10,
+        marginRight:10,
+        height:35
+
+    },
+
+    PageHead: {
+        fontSize: 30,
+        padding: 15
     },
     myTouch: {
         padding: 15,

@@ -62,7 +62,7 @@ export default class Main extends Component < Props > {
             //alert(user.displayName)
             
         } else {
-            alert(0)
+          //  alert(0)
             
             // this.reset()
         }

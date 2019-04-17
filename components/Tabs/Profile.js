@@ -7,6 +7,7 @@
  */
 
 import React, {Component} from 'react';
+import {List, ListItem, Container, Header, Content} from 'native-base'
 import {
     Platform,
     StyleSheet,
@@ -14,7 +15,8 @@ import {
     View,
     TouchableOpacity,
     ImageBackground,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import {NavigationActions} from 'react-navigation';
@@ -36,7 +38,7 @@ export default class Explore extends Component < Props > {
     }
 
     directToStartedPage = () => {
-        // alert(0)
+       
         this
             .props
             .navigation
@@ -52,16 +54,13 @@ export default class Explore extends Component < Props > {
             .currentUser;
 
         if (user) {
-            // alert(1)
+            
 
             this.setState({email: user.email, username: user.displayName})
 
-            //alert(user.displayName)
 
         } else {
-            alert(0)
-
-            // this.reset()
+            
         }
     }
 
@@ -70,7 +69,7 @@ export default class Explore extends Component < Props > {
             .auth()
             .signOut()
             .then(function () {
-                // alert("nice") Sign-out successful.
+                
             })
             .catch(function (error) {
                 alert("null")
@@ -106,11 +105,57 @@ export default class Explore extends Component < Props > {
 
     render() {
         return (
-            <View>
+            <ScrollView>
+                <View>
+                    <Text style={styles.accountTxt}>Account</Text>
+                    <List>
+                        <ListItem itemDivider></ListItem>
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>{this.state.email}</Text>
+                            </TouchableOpacity>
+                        </ListItem>
 
-                <Text>This is the Profile page, Welcome {this.state.email}</Text>
+                        <ListItem itemDivider></ListItem>
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Your activity</Text>
+                            </TouchableOpacity>
+                        </ListItem>
 
-            </View>
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Payments</Text>
+                            </TouchableOpacity>
+                        </ListItem>
+
+                        <ListItem itemDivider></ListItem>
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>About</Text>
+                            </TouchableOpacity>
+                        </ListItem>
+
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Share</Text>
+                            </TouchableOpacity>
+                        </ListItem>
+
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Contact and remarks</Text>
+                            </TouchableOpacity>
+                        </ListItem>
+
+                        <ListItem style={styles.myListItem}>
+                            <TouchableOpacity onPress={this.clearKey} style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Logout</Text>
+                            </TouchableOpacity>
+                        </ListItem>
+                    </List>
+                </View>
+            </ScrollView>
         );
     }
 }
@@ -122,14 +167,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%'
     },
+    accountTxt: {
+        fontSize: 30,
+        padding: 15
+    },
     myTouch: {
-        padding: 15,
-        borderRadius: 50,
-        margin: 40,
-        backgroundColor: 'rgb(139,69,19)'
+
+        width: '100%'
+
+    },
+    myListItem: {
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1
     },
     myTouchTxt: {
         padding: 10,
-        color: '#fff'
+        color: 'black'
     }
 });
