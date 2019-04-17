@@ -17,66 +17,63 @@ import {
     Image
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import {NavigationActions} from 'react-navigation';
 import firebase from 'firebase'
 
 type Props = {};
 export default class Main extends Component < Props > {
 
-    componentWillMount(){
+    componentWillMount() {
         this.getUserData()
     }
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            email:'',
-            username:'',
-
+        this.state = {
+            email: '',
+            username: ''
         }
     }
 
-    directToStartedPage=()=>{
+    directToStartedPage = () => {
         // alert(0)
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Getstarted' })])
+        this
+            .props
+            .navigation
+            .reset([NavigationActions.navigate({routeName: 'Getstarted'})])
 
-      }
+    }
 
-      getUserData=()=>{
-          this.setState({
-              email:'nothing here'
-          })
-          
-       var user = firebase
+    getUserData = () => {
+        this.setState({email: 'nothing here'})
+
+        var user = firebase
             .auth()
             .currentUser;
 
         if (user) {
-           // alert(1)
+            // alert(1)
 
-            this.setState({
-                email:user.email,
-                username:user.displayName
-            })
+            this.setState({email: user.email, username: user.displayName})
 
             //alert(user.displayName)
-            
+
         } else {
-          //  alert(0)
-            
-            // this.reset()
+            //  alert(0) this.reset()
         }
-      }
+    }
 
-
-      signOut=()=>{
-        firebase.auth().signOut().then(function() {
-           // alert("nice")
-            // Sign-out successful.
-          }).catch(function(error) {
-            alert("null")
-          });
-      }
+    signOut = () => {
+        firebase
+            .auth()
+            .signOut()
+            .then(function () {
+                // alert("nice") Sign-out successful.
+            })
+            .catch(function (error) {
+                alert("null")
+            });
+    }
 
     checkUserSignIn = () => {
         var user = firebase
@@ -90,21 +87,20 @@ export default class Main extends Component < Props > {
         }
     }
 
-    
+    clearKey = () => {
 
-    clearKey=()=>{
-       
-        AsyncStorage.removeItem('loginkey')
-        .then(()=>{
-            this.signOut()
-        this.directToStartedPage()
-        }).catch((error)=>{
+        AsyncStorage
+            .removeItem('loginkey')
+            .then(() => {
+                this.signOut()
+                this.directToStartedPage()
+            })
+            .catch((error) => {
 
-           alert(error)
-        })
-    
-}
+                alert(error)
+            })
 
+    }
 
     render() {
         return (
@@ -112,9 +108,7 @@ export default class Main extends Component < Props > {
 
                 <Text>This is the main page, Welcome {this.state.email}</Text>
 
-                <TouchableOpacity
-                
-                onPress={this.clearKey}>
+                <TouchableOpacity onPress={this.clearKey}>
                     <Text>Logout</Text>
                 </TouchableOpacity>
             </View>

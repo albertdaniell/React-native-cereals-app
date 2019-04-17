@@ -55,7 +55,7 @@ export default class Createaccount extends Component < Props > {
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => {
                 this.pushToDb()
-                
+
                 this.saveKey()
                 this.directToMainPage()
 
@@ -66,30 +66,36 @@ export default class Createaccount extends Component < Props > {
 
     }
 
-    saveKey=()=>{
+    saveKey = () => {
 
-        AsyncStorage.setItem('loginkey', 'Logged in')
-        .then(()=>{
-            console.log("Key has been saved")
-        })
+        AsyncStorage
+            .setItem('loginkey', 'Logged in')
+            .then(() => {
+                console.log("Key has been saved")
+            })
     }
 
-    directToMainPage=()=>{
-     
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Mainpage' })])
+    directToMainPage = () => {
 
-      }
+        this
+            .props
+            .navigation
+            .reset([NavigationActions.navigate({routeName: 'Mainpage'})])
 
-      pushToDb=()=>{
-        var usersRef = firebase.database().ref("users");
+    }
+
+    pushToDb = () => {
+        var usersRef = firebase
+            .database()
+            .ref("users");
         usersRef.push({phone: this.state.phone, email: this.state.email});
-       // alert("Data saved")
-      }
+        // alert("Data saved")
+    }
 
-      componentDidMount=()=>{
+    componentDidMount = () => {
         //   this.pushToDb()
 
-      }
+    }
 
     render() {
         return (
@@ -108,22 +114,26 @@ export default class Createaccount extends Component < Props > {
                             color: 'white'
                         }}>Sign Up</Text>
                         <TextInput
+                            keyboardType='email-address'
                             onChangeText={(email) => this.setState({email})}
                             style={styles.myInput}
                             placeholderTextColor='white'
                             placeholder='Email'></TextInput>
                         <TextInput
+                            keyboardType='phone-pad'
                             onChangeText={(phone) => this.setState({phone})}
                             style={styles.myInput}
                             placeholderTextColor='white'
                             placeholder='Phone number'></TextInput>
 
                         <TextInput
+                            secureTextEntry={true}
                             onChangeText={(password) => this.setState({password})}
                             style={styles.myInput}
                             placeholderTextColor='white'
                             placeholder='Password'></TextInput>
                         <TextInput
+                            secureTextEntry={true}
                             onChangeText={(password2) => this.setState({password2})}
                             style={styles.myInput}
                             placeholderTextColor='white'

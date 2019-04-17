@@ -15,25 +15,25 @@ import {
     TextInput,
     Image,
     ImageBackground,
-    ActivityIndicator,
+    ActivityIndicator
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {AsyncStorage} from 'react-native';
 
 // firebase
 import firebase from 'firebase'
-import { NavigationActions } from 'react-navigation';
-
-
-
+import {NavigationActions} from 'react-navigation';
 
 type Props = {};
 export default class Login extends Component < Props > {
-    directToMainPage=()=>{
-     
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Mainpage' })])
+    directToMainPage = () => {
 
-      }
+        this
+            .props
+            .navigation
+            .reset([NavigationActions.navigate({routeName: 'Mainpage'})])
+
+    }
 
     componentDidMount() {}
 
@@ -45,54 +45,45 @@ export default class Login extends Component < Props > {
             email: '',
             password: '',
             message: '',
-            isLoading:false
+            isLoading: false
         }
     }
 
-    testFunc=()=>{
+    testFunc = () => {
         // alert(0)
     }
 
     loginFunc = () => {
 
-        this.setState({
-            isLoading:true
-        })
+        this.setState({isLoading: true})
 
         // check if fields are empty
 
         if (this.state.email == '' || this.state.password == '') {
             this.setState({message: 'Please fill in all fields.'})
-            this.setState({
-                isLoading:false
-            })
+            this.setState({isLoading: false})
 
             return 0;
         }
 
         this.setState({message: ''})
-        this.setState({
-            isLoading:true
-        })
+        this.setState({isLoading: true})
         firebase
             .auth()
             .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(()=> {
-               
+            .then(() => {
+
                 //Store a key
 
-                AsyncStorage.setItem('loginkey', 'Logged in')
-                .then(()=>{
-                    console.log("Key has been saved")
-                })
+                AsyncStorage
+                    .setItem('loginkey', 'Logged in')
+                    .then(() => {
+                        console.log("Key has been saved")
+                    })
                 this.directToMainPage()
             })
-
-           
             .catch(error => {
-                this.setState({
-                    isLoading:false
-                })
+                this.setState({isLoading: false})
                 this.setState({message: error.message})
             })
 
@@ -113,36 +104,37 @@ export default class Login extends Component < Props > {
                             color: 'black',
                             fontSize: 30
                         }}>Login</Text>
-                        <TextInput 
-                        keyboardType='email-address'
-                        onChangeText={(email)=>this.setState({email})}
-                        style={styles.myInput} placeholder='Email'></TextInput>
                         <TextInput
-                        textContentType='password'
-                        secureTextEntry={true}
-                         style={styles.myInput}
-                        onChangeText={(password)=>this.setState({password})}
-                         placeholder='Password'></TextInput>
+                            keyboardType='email-address'
+                            onChangeText={(email) => this.setState({email})}
+                            style={styles.myInput}
+                            placeholder='Email'></TextInput>
+                        <TextInput
+                            textContentType='password'
+                            secureTextEntry={true}
+                            style={styles.myInput}
+                            onChangeText={(password) => this.setState({password})}
+                            placeholder='Password'></TextInput>
                         <Text
                             style={{
                             padding: 0,
                             color: 'brown',
                             marginTop: 10
                         }}>{this.state.message}</Text>
-                   
 
-                        {
-                            this.state.isLoading?
-                            <TouchableOpacity
-                        style={styles.myTouch}>
-                           <ActivityIndicator size="small" style={{padding:20}} color="#fff" />
-                        </TouchableOpacity>
-                            :
-                            <TouchableOpacity onPress={this.loginFunc} style={styles.myTouch}>
-                            <Text style={styles.myTouchTxt}>Login</Text>
-                        </TouchableOpacity>
-                           
-                        }
+                        {this.state.isLoading
+                            ? <TouchableOpacity style={styles.myTouch}>
+                                    <ActivityIndicator
+                                        size="small"
+                                        style={{
+                                        padding: 20
+                                    }}
+                                        color="#fff"/>
+                                </TouchableOpacity>
+                            : <TouchableOpacity onPress={this.loginFunc} style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Login</Text>
+                            </TouchableOpacity>
+}
 
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('Createaccount')}
@@ -152,12 +144,6 @@ export default class Login extends Component < Props > {
                         }}>
                             <Text style={{}}>No account? Sign Up</Text>
                         </TouchableOpacity>
-
-
-                       
-
-                 
-
 
                     </View>
                 </View>

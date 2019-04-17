@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import firebase from 'firebase'
 import {AsyncStorage} from 'react-native';
@@ -34,13 +34,11 @@ export default class Home extends Component < Props > {
     }
 
     componentDidMount() {
-         setTimeout(()=>{    
-             this.retrieveMyKeyData() },500) 
-             
-             //this.getUserDetails()
+        setTimeout(() => {
+            this.retrieveMyKeyData()
+        }, 500)
 
-      //  this.getUserDetails()
-        //this.checkKey()
+        //this.getUserDetails()  this.getUserDetails() this.checkKey()
 
     }
 
@@ -107,7 +105,12 @@ export default class Home extends Component < Props > {
         return (
             <View style={styles.container}>
 
-                <Image style={{height:150,width:150}} source={require("../assets/Images/cARLOGO.png")}></Image>
+                <Image
+                    style={{
+                    height: 150,
+                    width: 150
+                }}
+                    source={require("../assets/Images/cARLOGO.png")}></Image>
             </View>
         );
     }
