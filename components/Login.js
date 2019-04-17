@@ -15,7 +15,8 @@ import {
     TextInput,
     Image,
     ImageBackground,
-    ActivityIndicator
+    ActivityIndicator,
+    StatusBar
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {AsyncStorage} from 'react-native';
@@ -97,6 +98,8 @@ export default class Login extends Component < Props > {
                 height: '100%'
             }}
                 source={require('../assets/Images/Loginbg-01.jpg')}>
+                <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
+
                 <View style={styles.header}>
 
                     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>

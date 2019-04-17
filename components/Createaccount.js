@@ -14,7 +14,8 @@ import {
     View,
     TextInput,
     Image,
-    ImageBackground
+    ImageBackground,
+    StatusBar
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import firebase from 'firebase'
@@ -116,6 +117,8 @@ onPress={()=>this.props.navigation.goBack()}
 </TouchableOpacity>
 </View>
                 <View style={styles.container}>
+                <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
+
                     <View style={styles.logincont}>
                         <Text
                             style={{

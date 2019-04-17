@@ -14,7 +14,8 @@ import {
     View,
     TouchableOpacity,
     ImageBackground,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import {NavigationActions} from 'react-navigation';

@@ -14,7 +14,8 @@ import {
     View,
     TouchableOpacity,
     ImageBackground,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
 
 type Props = {};
@@ -34,6 +35,7 @@ export default class Getstarted extends Component < Props > {
                 style={{
                 height: '100%'
             }}>
+            <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
 
                 <View style={styles.container}>
 
@@ -47,7 +49,7 @@ export default class Getstarted extends Component < Props > {
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('Createaccount')}
                             style={styles.myTouch}>
-                            <Text style={styles.myTouchTxt}>G E T S T A R T E D</Text>
+                            <Text style={styles.myTouchTxt}>G   E   T      S   T   A   R   T   E   D</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity

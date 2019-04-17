@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image,StatusBar} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import firebase from 'firebase'
 import {AsyncStorage} from 'react-native';
@@ -104,6 +104,7 @@ export default class Home extends Component < Props > {
     render() {
         return (
             <View style={styles.container}>
+            <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
 
                 <Image
                     style={{

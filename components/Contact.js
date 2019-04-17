@@ -16,7 +16,8 @@ import {
     TouchableOpacity,
     ImageBackground,
     Image,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import {NavigationActions} from 'react-navigation';
@@ -101,6 +102,8 @@ export default class Explore extends Component < Props > {
     render() {
         return (
             <ScrollView>
+            <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
+
                 <View style={{padding:20}}>
                     <Text style={styles.HeadingTxt}>Contact</Text>
                     <Text>
@@ -116,6 +119,7 @@ export default class Explore extends Component < Props > {
 
                     <Text>Issue</Text>
                     <TextInput
+                    placeholderTextColor='#ccc'
                     placeholder='Issue'
                      style={styles.myInput}>
 
@@ -123,7 +127,9 @@ export default class Explore extends Component < Props > {
                     <Text>Description</Text>
                     <Textarea  style={styles.myInput2} rowSpan={5} placeholderTextColor='#ccc' bordered placeholder="Please give description of the issue" />
 
-
+                    <TouchableOpacity style={styles.myTouch}>
+                                <Text style={styles.myTouchTxt}>Report</Text>
+                            </TouchableOpacity>
                 </View>
             </ScrollView>
         );
@@ -144,7 +150,10 @@ const styles = StyleSheet.create({
     },
     myTouch: {
 
-        width: '100%'
+        width: '100%',
+        backgroundColor:'rgb(66, 134, 244)',
+        borderRadius:30,
+        alignItems:'center'
 
     },
     myListItem: {
@@ -153,23 +162,24 @@ const styles = StyleSheet.create({
     },
     myTouchTxt: {
         padding: 10,
-        color: 'black'
+        color: 'white'
     },
     report:{
         padding:20
     },
     myInput: {
-        borderBottomColor: '#efefef',
+        borderBottomColor: '#e2e2e2',
         borderBottomWidth: 1,
         marginTop: 5,
         marginBottom:10
 
     },
     myInput2: {
-        borderColor: '#efefef',
+        borderBottomColor: '#e2e2e2',
         borderWidth: 1,
         marginTop: 10,
-        height:100
+        height:100,
+        marginBottom:20
 
     },
 });
