@@ -143,7 +143,9 @@ export default class Explore extends Component < Props > {
                         </ListItem>
 
                         <ListItem style={styles.myListItem}>
-                            <TouchableOpacity style={styles.myTouch}>
+                            <TouchableOpacity
+                            onPress={()=>this.props.navigation.navigate('Contact')}
+                             style={styles.myTouch}>
                                 <Text style={styles.myTouchTxt}>Contact and remarks</Text>
                             </TouchableOpacity>
                         </ListItem>

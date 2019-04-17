@@ -19,6 +19,7 @@ import Createaccount from './components/Createaccount'
 import Mainpage from './components/Main'
 import Explore from './components/Tabs/Explore'
 import Profile from './components/Tabs/Profile'
+import ContRepo from './components/Contact'
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu',
@@ -72,6 +73,12 @@ const AppNavigator = createStackNavigator({
         screen: TabNav,
         navigationOptions: {
             header: null
+        }
+    },
+    Contact: {
+        screen:ContRepo,
+        navigationOptions: {
+            title:'Contact and Report'
         }
     }
 
