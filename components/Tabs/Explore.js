@@ -15,6 +15,7 @@ import {
     TouchableOpacity,
     ImageBackground,
     Image,
+    StatusBar
     
 } from 'react-native';
 import { Container, Header, Item, Input, Icon, Button,Tab, Tabs,TabHeading } from 'native-base';
@@ -110,10 +111,11 @@ export default class Explore extends Component < Props > {
         return (
             
       <Container>
+          <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
       
       <View style={{margin:10,height:'100%'}}>
       <Tabs>
-          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
+          <Tab heading={ <TabHeading style={{ backgroundColor: '#ccc',color:'#fff'}}><Text style={{}}>Camera</Text></TabHeading>}>
           <Text style={styles.PageHead}>Explore</Text>
 
 <Item style={styles.searchDiv}>
@@ -122,10 +124,10 @@ export default class Explore extends Component < Props > {
 
 </Item>
           </Tab>
-          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
-          <Text>haha</Text>
+          <Tab heading={ <TabHeading style={{ backgroundColor: '#ccc',color:'#fff'}}><Text style={{}}>Camera</Text></TabHeading>}>
+          <Text>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae esse laboriosam a rem nam, cumque deleniti atque recusandae molestiae soluta eos earum repellat optio praesentium eligendi ullam odit reprehenderit laborum.</Text>
           </Tab>
-          <Tab heading={ <TabHeading style={{ backgroundColor: 'rgb(139,69,19)',color:'#fff'}}><Text style={{color:'#fff'}}>Camera</Text></TabHeading>}>
+          <Tab heading={ <TabHeading style={{ backgroundColor: '#ccc',color:'#fff'}}><Text style={{}}>Camera</Text></TabHeading>}>
           <Text>haha</Text>
           </Tab>
         </Tabs>
