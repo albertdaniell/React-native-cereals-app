@@ -24,6 +24,7 @@ import {AsyncStorage} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import firebase from 'firebase'
 import { TextInput } from 'react-native-gesture-handler';
+import Myappstate from '../Myappstate'
 
 type Props = {};
 export default class Explore extends Component < Props > {
@@ -112,9 +113,9 @@ export default class Explore extends Component < Props > {
             
       <Container>
           <StatusBar backgroundColor="rgba(139,69,19,.7)" barStyle="light-content" />
-      
+     
       <View style={{margin:10,height:'100%'}}>
-         
+      {/* <Myappstate></Myappstate> */}
       <Tabs style={{borderWidth:0}} tabBarUnderlineStyle={{borderBottomColor:'white',borderWidth:1}} >
           <Tab activeTabStyle={{backgroundColor:'red'}} tabStyle={{borderWidth:0}}  heading={ <TabHeading activeTabStyle={{backgroundColor:'red'}} style={{ backgroundColor: 'white',color:'#fff',borderWidth:0}}><Text style={{}}>Public</Text></TabHeading>}>
           <Text style={styles.PageHead}>Explore</Text>

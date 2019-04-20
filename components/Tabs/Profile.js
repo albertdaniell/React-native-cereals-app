@@ -16,7 +16,9 @@ import {
     TouchableOpacity,
     ImageBackground,
     Image,
-    ScrollView
+    ScrollView,
+    Share, 
+    Button
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import {NavigationActions} from 'react-navigation';
@@ -36,6 +38,29 @@ export default class Explore extends Component < Props > {
             username: ''
         }
     }
+
+    onShare = async () => {
+        try {
+          const result = await Share.share({
+            message:
+              'React Native | A framework for building native apps using React',
+          });
+    
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+              alert("dismissed")
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      };
+    
 
     directToStartedPage = () => {
        
@@ -145,7 +170,9 @@ setTimeout(()=>{
                         </ListItem>
 
                         <ListItem style={styles.myListItem}>
-                            <TouchableOpacity style={styles.myTouch}>
+                            <TouchableOpacity
+                            onPress={this.onShare}
+                             style={styles.myTouch}>
                                 <Text style={styles.myTouchTxt}>Share</Text>
                             </TouchableOpacity>
                         </ListItem>
